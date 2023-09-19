@@ -25,7 +25,7 @@ export const authOptions: NextAuthOptions = {
             password: { label: "Password", type: "password" }
           },
           async authorize(credentials) {
-
+            console.log(credentials);
             //valida si falta algúno de los inputs
 
             if(!credentials?.email || !credentials?.password){
@@ -44,8 +44,13 @@ export const authOptions: NextAuthOptions = {
             const passwordMatch = await compare(credentials.password, existingUser.password);
             if(!passwordMatch){
                 return null;
+            }          
+
+            return {
+                id:`${existingUser.id}`,
+                username: existingUser.username,
+                email: existingUser.email
             }
-            
             // const res = await fetch("/your/endpoint", {
             //   method: 'POST',
             //   body: JSON.stringify(credentials),

@@ -20,11 +20,6 @@ const userSchema = z
   })
  
 
-
-export async function GET() {
-  return NextResponse.json({ success: true });
-}
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();

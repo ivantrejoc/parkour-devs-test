@@ -15,26 +15,42 @@ import * as z from "zod";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import GoogleSignInButton from "../ui/googleSignInButton";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation"; 
+
 
 const FormSchema = z.object({
-  email: z.string().min(1, "Email is required"). email("Invalid email"),
+  email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
-  .string()
-  .min(1, "Password is required")
-  .min(8, "Password must have 8 characters"),
+    .string()
+    .min(1, "Password is required")
+    .min(8, "Password must have 8 characters"),
 });
 
 const SignInForm = () => {
+  const router = useRouter(); // hook de nextJS para despacho de rutas
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolutor(FormSchema),
     defaultValues: {
-        email: "",
-        password: ""
-    }
+      email: "",
+      password: "",
+    },
   });
 
-  const onSubmit = (values: z.infer<typeof FormSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    //especificar el provider de auth.ts
+    const signInData = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+    });
+
+    router.push("/admin");
+    // if(signInData?.error){
+    //   console.log(signInData.error);
+    // }else{ 
+    //   console.log("llega hasta aquí")     
+    //   router.push("/admin");  //envía a la ruta /admin 
+    // }
   };
 
   return (
@@ -62,7 +78,11 @@ const SignInForm = () => {
               <FormItem>
                 <FormLabel>Password</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="Enter your password" {...field} />
+                  <Input
+                    type="password"
+                    placeholder="Enter your password"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -70,15 +90,20 @@ const SignInForm = () => {
           />
         </div>
 
-        <Button className="w-full mt-6 bg-black text-white"  type="submit">Sign in</Button>
+        <Button className="w-full mt-6 bg-black text-white" type="submit">
+          Sign in
+        </Button>
 
         <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
-            or
+          or
         </div>
         <GoogleSignInButton>Sign in with Google</GoogleSignInButton>
         <p className="text-center text-sm text-gray-600 mt-2">
-                If you don´t have an account, please  
-                <Link className="text-blue-500 hover:underline" href="sign-up"> Sign up</Link>
+          If you don´t have an account, please
+          <Link className="text-blue-500 hover:underline" href="sign-up">
+            {" "}
+            Sign up
+          </Link>
         </p>
       </form>
     </Form>
