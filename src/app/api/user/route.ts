@@ -4,6 +4,7 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt"
 import * as z from "zod";
+import { json } from "node:stream/consumers";
 
 
 // validaciones de los inputs
@@ -19,6 +20,9 @@ const userSchema = z
     
   })
  
+  export async function GET() {
+    return NextResponse.json({message:"success"})
+  }
 
 export async function POST(req: Request) {
   try {

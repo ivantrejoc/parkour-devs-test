@@ -18,7 +18,7 @@ import GoogleSignInButton from "../ui/googleSignInButton";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation"; 
 
-
+//Esquema de estructura y validaciones del form
 const FormSchema = z.object({
   email: z.string().min(1, "Email is required").email("Invalid email"),
   password: z
@@ -27,6 +27,7 @@ const FormSchema = z.object({
     .min(8, "Password must have 8 characters"),
 });
 
+//handler de estado local del form
 const SignInForm = () => {
   const router = useRouter(); // hook de nextJS para despacho de rutas
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -38,13 +39,15 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    //especificar el provider de auth.ts
-    const signInData = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-    });
 
-    router.push("/admin");
+    console.log("hola");
+    //especificar el provider de auth.ts
+    // const signInData = await signIn("credentials", {
+    //   email: values.email,
+    //   password: values.password,
+    // });
+
+    
     // if(signInData?.error){
     //   console.log(signInData.error);
     // }else{ 
