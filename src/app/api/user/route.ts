@@ -3,7 +3,7 @@
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 import { hash } from "bcrypt"
-import * as z from "zod";
+import * as z from "zod"; //elimina declaraciones duplicadas
 import { json } from "node:stream/consumers";
 
 
