@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +15,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import GoogleSignInButton from "../ui/googleSignInButton";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation"; 
+import { useRouter } from "next/navigation";
 
 //Esquema de estructura y validaciones del form
 const FormSchema = z.object({
@@ -27,7 +26,6 @@ const FormSchema = z.object({
     .min(8, "Password must have 8 characters"),
 });
 
-//handler de estado local del form
 const SignInForm = () => {
   const router = useRouter(); // hook de nextJS para despacho de rutas
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -38,22 +36,18 @@ const SignInForm = () => {
     },
   });
 
+  //handler de envío de form
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-
-    console.log("hola");
-    //especificar el provider de auth.ts
-    // const signInData = await signIn("credentials", {
-    //   email: values.email,
-    //   password: values.password,
-    // });
-
-    
-    // if(signInData?.error){
-    //   console.log(signInData.error);
-    // }else{ 
-    //   console.log("llega hasta aquí")     
-    //   router.push("/admin");  //envía a la ruta /admin 
-    // }
+    try {
+      //especificar el provider de auth.ts como parámtero
+      const signInData = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+      });
+      console.log("ESTOS SON LOS DATOS QUE VIENEN DE AUTH", signInData);
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
   };
 
   return (
