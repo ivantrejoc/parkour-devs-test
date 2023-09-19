@@ -15,7 +15,7 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import GoogleSignInButton from "../ui/googleSignInButton";
 import { useRouter } from "next/navigation"; // hook de next para direccionar a una ruta específica
-import { send } from "process";
+
 
 //Validaciones del form
 const FormSchema = z
