@@ -19,7 +19,7 @@ const userSchema = z
       .min(8, "Password must have 8 characters"),
     
   })
- export async function GET(req:Request) {
+ export async function GET() {
 
   try {
     
