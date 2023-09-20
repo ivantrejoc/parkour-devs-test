@@ -16,7 +16,6 @@ import Link from "next/link";
 import GoogleSignInButton from "../ui/googleSignInButton";
 import { useRouter } from "next/navigation"; // hook de next para direccionar a una ruta específica
 
-
 //Validaciones del form
 const FormSchema = z
   .object({
@@ -60,18 +59,15 @@ const SignUpForm = () => {
       }),
     });
 
-    if(response.ok){    //si recibe un status 200 envía alert de registro exitoso, caso contrario alerta de un error
-      alert("Successful Register")
+    if (response.ok) {
+      //si recibe un status 200 envía alert de registro exitoso, caso contrario alerta de un error
+      alert("Successful Register");
       router.push("/sign-in");
-    }
-      
-    else{
+    } else {
       alert("Registration failed");
       console.error("Registration failed");
-    } 
+    }
   };
-
-  
 
   return (
     <Form {...form}>
@@ -151,7 +147,6 @@ const SignUpForm = () => {
         <p className="text-center text-sm text-gray-600 mt-2">
           If you have an account, please
           <Link className="text-blue-500 hover:underline" href="sign-in">
-            {" "}
             Sign in
           </Link>
         </p>

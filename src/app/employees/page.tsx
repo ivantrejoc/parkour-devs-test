@@ -1,5 +1,6 @@
-import { Employee, columns } from "./columns"
-import { DataEmployees } from "./data-table";
+import { Employee, columns } from "../../components/Table/columns"
+import { DataEmployees } from "../../components/Table/data-table";
+
 
 
  
@@ -36,12 +37,13 @@ async function getData(): Promise<Employee[]> {
     // ...
   ]
 }
+
  
 export default async function DemoPage() {
-  const data = await getData()
- 
-  return (
-    <div className="container mx-auto py-10">
+  const data = await getData(); // hace petición de datos a la BDD
+    return (
+    <div className="w-full mx-auto py-10">
+        
       <DataEmployees columns={columns} data={data} />
     </div>
   )

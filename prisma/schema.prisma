@@ -21,13 +21,13 @@ model User {
 
 model Employee {
   id            Int      @id @default(autoincrement())
-  cedula        String    @unique(map: "cedula")
+  cedula        BigInt   @unique(map: "cedula")
   name          String   @unique(map: "name") @db.VarChar(100)
   patron        String   @db.VarChar(200)
   business_name String   @db.VarChar(200)
   tel1          String
   tel2          String
-  salary        Decimal
+  salary        Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
