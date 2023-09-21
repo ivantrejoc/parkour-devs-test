@@ -16,6 +16,7 @@ export async function GET(req: Request) {
   try {
     const employees = await db.employee.findMany({
       select: {
+        id: true,
         cedula: true,
         name: true,
         patron: true,
