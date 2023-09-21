@@ -38,8 +38,9 @@ export function DataEmployees<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
-  )
+  );
 
+  
   const table = useReactTable({
     data,
     columns,
@@ -49,22 +50,31 @@ export function DataEmployees<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    
     state: {
       sorting,
       columnFilters,
+     
     },
   });
 
-  const router = useRouter(); 
- 
-  const routerForm = ()=>{
-    router.push("/employees/form-data")
-  }; 
+  const router = useRouter();
+
+  const routerForm = () => {
+    router.push("/employees/form-data");
+  };  
+    
+
 
   return (
     <div>
-      <Button className="text-white bg-gray-800 hover:bg-gray-900 border-solid-2-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={routerForm}>Create new register</Button>
-      <div className="flex items-center py-4">      
+      <Button
+        className="text-white bg-gray-800 hover:bg-gray-900 border-solid-2-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+        onClick={routerForm}
+      >
+        Create new register
+      </Button>      
+      <div className="flex items-center py-4">
         <Input
           placeholder="Search employee name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}

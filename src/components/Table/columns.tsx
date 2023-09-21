@@ -1,16 +1,16 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { redirect } from "next/navigation";
 
 export type Employee = {
   id: number;
@@ -23,11 +23,33 @@ export type Employee = {
   salary: string;
 };
 
-// const async function deleteRegister() = {
-  
-// }
+export default async function deleteRegister(employeeCedula: string) {
+  try {
+    const response = await fetch(
+      `http://localhost:3000/api/data-employees/${employeeCedula}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    //si recibe un status 200 envía alert de registro exitoso, caso contrario alerta de un error
+    if (response.ok) {
+      alert("Register Deleted");
+     
+    }
+  } catch (error) {
+    console.log(error);
+    alert("Something went wrong");
+    return false;
+  }
+}
+
+
 
 export const columns: ColumnDef<Employee>[] = [
+  
   {
     accessorKey: "cedula",
     header: "Id",
@@ -100,15 +122,11 @@ export const columns: ColumnDef<Employee>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className= "bg-slate-200" align="end">
+          <DropdownMenuContent className="bg-slate-200" align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-            <Button>Delete Register</Button>
-            {/* <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(employee.cedula)}
-            >
+            <DropdownMenuItem onClick={() => deleteRegister(employee.cedula)}>
               Delete register
-            </DropdownMenuItem> */}
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
