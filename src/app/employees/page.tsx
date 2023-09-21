@@ -3,48 +3,40 @@ import { DataEmployees } from "../../components/Table/data-table";
 
 
 
- 
-async function getData(): Promise<Employee[]> {  
-      // Fetch data from your API here. 
-  return [ 
-    {
-        id: 14225323,
-        name: "Pedro Martinez",
-        patron:"Banco Unido",
-        business_name: "Banco Unido, S.A",
-        tel1: "50763257891",
-        tel2: "50765796352",
-        salary: "$2000.00",   
+
+async function getData(): Promise<Employee[]> {
+  try {
+    const response = await fetch("http://localhost:3000/api/data-employees", {
+      method: "GET", 
+      headers: {
+        "Content-Type": "application/json",
       },
-      {
-        id: 25638572,
-        name: "Carlos Paz",
-        patron:"Banco Fichosa",
-        business_name: "Banco Fichosa, S.A",
-        tel1: "50766879625",
-        tel2: "50765784123",
-        salary: "$2150.00",   
-      },
-      {
-        id: 36521478,
-        name: "Maria Castillo",
-        patron:"Petroautos",
-        business_name: "Petroautos, S.A",
-        tel1: "50763895214",
-        tel2: "50769854512",
-        salary: "$1950.00",   
-      }
-    // ...
-  ]
+    });
+
+    if (!response.ok) {
+      
+      throw new Error (`No data available: ${response.status}`);
+    }
+
+    const rowData = await response.json();
+    console.log("ESTO ES LO QUE ESTÁ RESPONDIENDO LA BDD:",rowData);
+    const {employees} = rowData;  
+
+    return employees;
+  } catch (error) {
+    
+    console.error("Something went wrong:", error);
+    throw error;
+  }
 }
 
- 
+
 export default async function DemoPage() {
-  const data = await getData(); // hace petición de datos a la BDD
-    return (
+  const dataTable = await getData(); // hace petición de datos a la BDD
+     return (
     <div className="w-full mx-auto py-10">
-        
-      <DataEmployees columns={columns} data={data} />
+
+      <DataEmployees columns={columns} data={dataTable} />
     </div>
   )
 }

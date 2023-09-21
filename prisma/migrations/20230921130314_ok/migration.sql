@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Employee" ALTER COLUMN "cedula" SET DATA TYPE TEXT,
+ALTER COLUMN "salary" SET DATA TYPE TEXT;

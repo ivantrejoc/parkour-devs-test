@@ -10,6 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator zod {
+  provider = "zod-prisma-types"
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique(map: "email") @db.VarChar(255)
@@ -21,13 +25,13 @@ model User {
 
 model Employee {
   id            Int      @id @default(autoincrement())
-  cedula        BigInt   @unique(map: "cedula")
+  cedula        String   @unique(map: "cedula")
   name          String   @unique(map: "name") @db.VarChar(100)
   patron        String   @db.VarChar(200)
   business_name String   @db.VarChar(200)
   tel1          String
   tel2          String
-  salary        Int
+  salary        String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

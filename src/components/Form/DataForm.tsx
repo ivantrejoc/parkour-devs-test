@@ -16,51 +16,36 @@ import Link from "next/link";
 import { useRouter } from "next/navigation"; // hook de next para direccionar a una ruta específica
 
 //Esquema y Validaciones del form
-const FormSchema = z.object({
-  cedula: z.number().min(1, "Id is required").max(12),
+export const employeeSchema = z.object({
+  cedula: z.string().min(1, "Id is required").max(12),
   name: z.string().min(1, "Name is required"),
-  patron: z
-    .string()
-    .min(1, "Patron is required")
-    .min(6, "Patron must have at least 6 characters"),
-  business_name: z
-    .string()
-    .min(1, "Business name is required")
-    .min(6, "Business name must have at least 6 characters"),
-  tel1: z
-    .string()
-    .min(1, " Tel1 is required")
-    .min(6, "Tel1 must have at least 6 characters"),
-  tel2: z
-    .string()
-    .min(1, "Tel2 is required")
-    .min(6, "Tel2 must have at least 6 characters"),
-  salary: z
-    .number()
-    .positive("Salary can't be a negative number")
-    .min(1, "Salary is required"),
+  patron: z.string().min(1, "Patron is required"),
+  business_name: z.string().min(1, "Business name is required"),
+  tel1: z.string().min(1, " Tel1 is required"),
+  tel2: z.string().min(1, "Tel2 is required"),
+  salary: z.string().min(1, "Salary is required"),
 });
 
-// Handler del form
+// Componente form
 const DataForm = () => {
   const router = useRouter(); // hook de next para direccionar a una ruta específica
-  const form = useForm<z.infer<typeof FormSchema>>({
-    resolver: zodResolutor(FormSchema),
+  const form = useForm<z.infer<typeof employeeSchema>>({
+    resolver: zodResolutor(employeeSchema),
     defaultValues: {
-      cedula: 0,
+      cedula: "",
       name: "",
       patron: "",
       business_name: "",
       tel1: "",
       tel2: "",
-      salary: 0,
+      salary: "",
     },
   });
 
   // envío de formulario. Funcíon asíncrona que hace un fetch a /api/user para envíar los datos contenidos en FormSchema
-  const onSubmit = async (values: z.infer<typeof FormSchema>) => {
-    const response = await fetch("/api/data-employees", {
-      method: "Post",
+  const onSubmit = async (values: z.infer<typeof employeeSchema>) => {
+    const response = await fetch("http://localhost:3000/api/data-employees", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -109,7 +94,7 @@ const DataForm = () => {
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input type="text"  placeholder="Jhon Doe" {...field} />
+                  <Input type="text" placeholder="Jhon Doe" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -136,7 +121,11 @@ const DataForm = () => {
               <FormItem>
                 <FormLabel>Business name</FormLabel>
                 <FormControl>
-                  <Input type="text" placeholder="XLS Supermarket TLC" {...field} />
+                  <Input
+                    type="text"
+                    placeholder="XLS Supermarket TLC"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -149,13 +138,8 @@ const DataForm = () => {
               <FormItem>
                 <FormLabel>Tel1</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    id="tel1"
-                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                    placeholder="+50760892456"
-                    {...field}
-                  />
+                  <Input type="text"
+                   placeholder="+50760892456" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -168,13 +152,7 @@ const DataForm = () => {
               <FormItem>
                 <FormLabel>Tel2</FormLabel>
                 <FormControl>
-                  <Input
-                    type="tel"
-                    id="tel2"
-                    pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-                    placeholder="+50760892456"
-                    {...field}
-                  />
+                  <Input type="text" placeholder="+50760892456" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -187,7 +165,7 @@ const DataForm = () => {
               <FormItem>
                 <FormLabel>Salary</FormLabel>
                 <FormControl>
-                  <Input  {...field} />
+                  <Input {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -206,13 +184,13 @@ const DataForm = () => {
 export default DataForm;
 
 function zodResolver(
-  FormSchema: z.ZodObject<
-    { username: z.ZodString },
+  EmployeeSchema: z.ZodObject<
+    { name: z.ZodString },
     "strip",
     z.ZodTypeAny,
-    { username: string },
-    { username: string }
+    { name: string },
+    { name: string }
   >
-): import("react-hook-form").Resolver<{ username: string }, any> | undefined {
+): import("react-hook-form").Resolver<{ name: string }, any> | undefined {
   throw new Error("Function not implemented.");
 }

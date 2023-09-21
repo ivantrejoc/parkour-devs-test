@@ -2,7 +2,7 @@
 
 import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
-import { hash } from "bcrypt"
+// import { hash } from "bcrypt"
 import * as z from "zod"; //elimina declaraciones duplicadas
 
 
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
 
     //encriptación contraseña
 
-    const hashedPassword = await hash(password, 10)
+    // const hashedPassword = await hash(password, 10)
 
     //registro de nuevo usuario
 
@@ -76,7 +76,7 @@ export async function POST(req: Request) {
       data: {
         username: username,
         email: email,       
-        password: hashedPassword,
+        password: password,
       },
     });
 
