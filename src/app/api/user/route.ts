@@ -83,7 +83,7 @@ export async function POST(req: Request) {
     //extraemos password y solo retornamos un json con el resto de los datos del user
     const { password: newUserPassword, ...rest} = newUSer;
 
-    return NextResponse.json({ user: rest, message: "Used created successfully"}, { status: 201});
+    return NextResponse.json({ user: rest, message: "User created successfully"}, { status: 201});
   } catch (error) {
     return NextResponse.json({ message: "Something went wrong"}, { status: 500});
   }

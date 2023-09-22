@@ -172,10 +172,7 @@ const DataForm = () => {
             )}
           />
         </div>
-
-        <Button className="w-[30%] mt-6 bg-black text-white" type="submit">
-          Create Employee
-        </Button>
+        
       </form>
     </Form>
   );
