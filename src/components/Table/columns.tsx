@@ -122,9 +122,8 @@ export const columns: ColumnDef<Employee>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-slate-200" align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => deleteRegister(employee.cedula)}>
+          <DropdownMenuContent className="rounded-xl border border-gray-300 bg-gray-50 text-gray-700" align="end">
+                        <DropdownMenuItem onClick={() => deleteRegister(employee.cedula)}>
               Delete register
             </DropdownMenuItem>
           </DropdownMenuContent>

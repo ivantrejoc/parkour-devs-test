@@ -78,14 +78,3 @@ export const Navbar = () => {
   );
 };
 
-{
-  /* <div classNameName="bg-zinc-100 py-2 border-b border-s-zinc-200 fixed w-full z-10 top-0">
-      <div className="container flex items-center justify-between text-black">
-        <Link href="/">Logo</Link>
-        <Link href="/">Home</Link> 
-        <Link href="/employees">Data Employees</Link> 
-        <Link href="employees/form-data">Create Register</Link>
-        <Button onClick={() => signOut()}>Logout</Button>    
-        </div>
-    </div> */
-}

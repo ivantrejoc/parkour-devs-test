@@ -40,7 +40,6 @@ export function DataEmployees<TData, TValue>({
     []
   );
 
-  
   const table = useReactTable({
     data,
     columns,
@@ -50,11 +49,10 @@ export function DataEmployees<TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    
+
     state: {
       sorting,
       columnFilters,
-     
     },
   });
 
@@ -62,18 +60,10 @@ export function DataEmployees<TData, TValue>({
 
   const routerForm = () => {
     router.push("/employees/form-data");
-  };  
-    
-
+  };
 
   return (
     <div>
-      <Button
-        className="text-white bg-gray-800 hover:bg-gray-900 border-solid-2-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        onClick={routerForm}
-      >
-        Create new register
-      </Button>      
       <div className="flex items-center py-4">
         <Input
           placeholder="Search employee name..."
@@ -81,13 +71,13 @@ export function DataEmployees<TData, TValue>({
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="block w-[30%] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
 
-      <div className="rounded-md border">
-        <Table>
-          <TableHeader>
+      <div >
+        <Table className="rounded-xl border border-gray-300 bg-gray-50">
+          <TableHeader className="text-md font-bold text-gray-700   bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -105,7 +95,7 @@ export function DataEmployees<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
+          <TableBody className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-xl border border-gray-300">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
@@ -137,6 +127,7 @@ export function DataEmployees<TData, TValue>({
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
@@ -145,6 +136,7 @@ export function DataEmployees<TData, TValue>({
           Previous
         </Button>
         <Button
+          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           variant="outline"
           size="sm"
           onClick={() => table.nextPage()}
