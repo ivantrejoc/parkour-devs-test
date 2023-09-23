@@ -71,18 +71,27 @@ const DataForm = () => {
   };
 
   return (
-    <Form  {...form}>
-      
-      <form className = "mb-6 mx-auto my-auto w-[60%]" onSubmit={form.handleSubmit(onSubmit)}>
-      <h2 className="text-gray-900 text-lg  mb-2">Create new Employee</h2> 
-                  <FormField
+    <Form {...form}>
+      <div className="p-0">
+        <h2 className="text-gray-900 text-lg  mb-2">Create new Employee</h2>
+        <form
+          className="w-full max-w-screen-xl h-auto mx-auto mt-0 grid grid-cols-2 grid-rows-4 gap-4 p-0"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <FormField
             control={form.control}
             name="cedula"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Identification</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Identification
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="1234125..." {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="1234125..."
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,9 +102,16 @@ const DataForm = () => {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Name
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Jhon Doe" {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
+                    placeholder="Jhon Doe"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -107,9 +123,16 @@ const DataForm = () => {
             name="patron"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Patron</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Patron
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="Super 99" {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
+                    placeholder="Super 99"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -120,9 +143,12 @@ const DataForm = () => {
             name="business_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Business name</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Business name
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
                     placeholder="XLS Supermarket TLC"
                     {...field}
@@ -137,10 +163,16 @@ const DataForm = () => {
             name="tel1"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tel1</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Tel1
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text"
-                   placeholder="+50760892456" {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
+                    placeholder="+50760892456"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -151,9 +183,16 @@ const DataForm = () => {
             name="tel2"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tel2</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Tel2
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" placeholder="+50760892456" {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
+                    placeholder="+50760892456"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -164,18 +203,28 @@ const DataForm = () => {
             name="salary"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Salary</FormLabel>
+                <FormLabel className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Salary
+                </FormLabel>
                 <FormControl>
-                  <Input className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" {...field} />
+                  <Input
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
-              </FormItem>             
-            )}           
+              </FormItem>
+            )}
           />
-          
-       <Button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mt-2 mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit">Create Register</Button>
-        
-      </form>
+
+          <Button
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py- text-center mt-8 mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            type="submit"
+          >
+            Create Register
+          </Button>
+        </form>
+      </div>
     </Form>
   );
 };

@@ -1,9 +1,8 @@
 import { Navbar } from "@/components/Navbar";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
-import  SessionProvider  from "./SessionProvider";
+import SessionProvider from "./SessionProvider";
 import { Inter } from "next/font/google";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,14 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        
+      <body className="bg-gray-400 w-full max-h-full flex flex-col flex-wrap">
         <main className="h-screen flex flex-col justify-center items-center">
-          <SessionProvider>
-          <Navbar />
-          {children}
-          </SessionProvider>
-        
+          <SessionProvider>{children}</SessionProvider>
         </main>
       </body>
     </html>

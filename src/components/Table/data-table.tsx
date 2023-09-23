@@ -63,20 +63,22 @@ export function DataEmployees<TData, TValue>({
   };
 
   return (
-    <div>
-      <div className="flex items-center py-4">
+    <div className="justify-center items-center w-full h-[20%] mx-auto">
+      
+      <div className="flex flex-col items-start py-2 mt-40">
+      <h2 className="text-gray-900 text-lg my-2 ">Employees Data</h2>
         <Input
           placeholder="Search employee name..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="block w-[30%] p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-[30%] pl-10 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
 
-      <div >
-        <Table className="rounded-xl border border-gray-300 bg-gray-50">
+      <div className="mt-2 w-full" >
+        <Table className="rounded-xl border w-full border-gray-300 bg-gray-50 py-20">
           <TableHeader className="text-md font-bold text-gray-700   bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -95,7 +97,7 @@ export function DataEmployees<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white rounded-xl border border-gray-300">
+          <TableBody className="px-6 py-4 font-small text-gray-900 whitespace-nowrap dark:text-white rounded-xl border border-gray-300">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

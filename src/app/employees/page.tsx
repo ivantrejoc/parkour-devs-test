@@ -1,13 +1,18 @@
-"use client"
+"use client";
 import { Employee, columns } from "../../components/Table/columns";
 import { DataEmployees } from "../../components/Table/data-table";
 import React, { useEffect, useState } from "react";
-
-
-
+import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 export default function DemoPage() {
-  
+  const session = useSession({
+    required: true,
+    onUnauthenticated() {
+      redirect("/sign-in");
+    },
+  });
+
   const [dataTable, setDataTable] = useState<Employee[]>([]);
 
   async function getData(): Promise<Employee[]> {
@@ -18,21 +23,19 @@ export default function DemoPage() {
           "Content-Type": "application/json",
         },
       });
-  
+
       if (!response.ok) {
         alert(`No data available: ${response.status}`);
       }
       const rowData = await response.json();
       const { employees } = rowData;
-  
+
       return employees;
     } catch (error) {
       console.error("Something went wrong:", error);
       throw error;
     }
   }
-  
-
 
   useEffect(() => {
     async function fetchData() {
@@ -46,9 +49,6 @@ export default function DemoPage() {
     }
     fetchData();
   }, []);
-  
-  
- 
 
   // const dataTable = await getData(); // hace petición de datos a la BDD
   return (
@@ -57,5 +57,3 @@ export default function DemoPage() {
     </div>
   );
 }
-
-
