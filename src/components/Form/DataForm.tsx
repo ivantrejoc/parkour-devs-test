@@ -15,22 +15,22 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation"; // hook de next para direccionar a una ruta específica
 
-//Esquema y Validaciones del form
-export const employeeSchema = z.object({
-  cedula: z.string().min(1, "Id is required").max(12),
-  name: z.string().min(1, "Name is required"),
+export const EmployeeSchema = z.object({
+  cedula: z.string().regex(new RegExp(/^[0-9]+$/), "Identificación must be a number").min(1, "Cédula is required").max(10),
+  name: z.string().regex(new RegExp(/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/), "Name must have only letters").min(1, "Name is required"),
   patron: z.string().min(1, "Patron is required"),
   business_name: z.string().min(1, "Business name is required"),
-  tel1: z.string().min(1, " Tel1 is required"),
-  tel2: z.string().min(1, "Tel2 is required"),
-  salary: z.string().min(1, "Salary is required"),
+  tel1: z.string().regex(new RegExp(/^[0-9]+$/), "Tel1 must must be a number").min(1, " Tel1 is required").max(20),
+  tel2: z.string().regex(new RegExp(/^[0-9]+$/), "Tel2 must must be a number").min(1, "Tel2 is required").max(20),
+  salary: z
+    .string().regex(new RegExp(/^(\d*\.)?\d+$/), "Salary must have 2 decimals").min(1, "Salary is required"),
 });
 
 // Componente form
 const DataForm = () => {
   const router = useRouter(); // hook de next para direccionar a una ruta específica
-  const form = useForm<z.infer<typeof employeeSchema>>({
-    resolver: zodResolutor(employeeSchema),
+  const form = useForm<z.infer<typeof EmployeeSchema>>({
+    resolver: zodResolutor(EmployeeSchema),
     defaultValues: {
       cedula: "",
       name: "",
@@ -43,20 +43,24 @@ const DataForm = () => {
   });
 
   // envío de formulario. Funcíon asíncrona que hace un fetch a /api/user para envíar los datos contenidos en FormSchema
-  const onSubmit = async (values: z.infer<typeof employeeSchema>) => {
+  const onSubmit = async (values: z.infer<typeof EmployeeSchema>) => {
+    console.log("ESTO ES LO QUE ESTÁ LLEGANDO A onSubmit", values);
+    const { cedula, name, patron, business_name, tel1, tel2, salary } =
+      EmployeeSchema.parse(values);
+
     const response = await fetch("http://localhost:3000/api/data-employees", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        cedula: values.cedula,
-        name: values.name,
-        patron: values.patron,
-        business_name: values.business_name,
-        tel1: values.tel1,
-        tel2: values.tel2,
-        salary: values.salary,
+        cedula: cedula,
+        name: name,
+        patron: patron,
+        business_name: business_name,
+        tel1: tel1,
+        tel2: tel2,
+        salary: salary,
       }),
     });
 
@@ -89,6 +93,7 @@ const DataForm = () => {
                 <FormControl>
                   <Input
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    type="text"
                     placeholder="1234125..."
                     {...field}
                   />

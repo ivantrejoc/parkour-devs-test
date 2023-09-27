@@ -14,15 +14,6 @@ generator zod {
   provider = "zod-prisma-types"
 }
 
-model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique(map: "email") @db.VarChar(255)
-  username  String   @unique @db.VarChar(100)
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Employee {
   id            Int      @id @default(autoincrement())
   cedula        String   @unique(map: "cedula")
@@ -31,7 +22,7 @@ model Employee {
   business_name String   @db.VarChar(200)
   tel1          String
   tel2          String
-  salary        String
+  salary        String   @db.VarChar(20)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }

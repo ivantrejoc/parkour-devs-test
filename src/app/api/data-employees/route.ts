@@ -2,14 +2,38 @@ import { db } from "../../../lib/db";
 import { NextResponse } from "next/server";
 import * as z from "zod";
 
-export const employeeSchema = z.object({
-  cedula: z.string().min(1, "Id is required").max(12),
-  name: z.string().min(1, "Name is required"),
+export const EmployeeSchema = z.object({
+  cedula: z
+    .string()
+    .regex(new RegExp(/^[0-9]+$/), "Identificación must be a number")
+    .min(1, "Cédula is required")
+    .max(10),
+  name: z
+    .string()
+    .regex(
+      new RegExp(/^[A-ZÑa-zñáéíóúÁÉÍÓÚ'° ]+$/),
+      "Name must have only letters"
+    )
+    .min(1, "Name is required"),
   patron: z.string().min(1, "Patron is required"),
   business_name: z.string().min(1, "Business name is required"),
-  tel1: z.string().min(1, " Tel1 is required"),
-  tel2: z.string().min(1, "Tel2 is required"),
-  salary: z.string().min(1, "Salary is required"),
+  tel1: z
+    .string()
+    .regex(new RegExp(/^[0-9]+$/), "Tel1 must must be a number")
+    .min(1, " Tel1 is required")
+    .max(20),
+  tel2: z
+    .string()
+    .regex(new RegExp(/^[0-9]+$/), "Tel2 must must be a number")
+    .min(1, "Tel2 is required")
+    .max(20),
+  salary: z
+    .string()
+    .regex(new RegExp (/^(\d*\.)?\d+$/),
+      "Salary must be a number with 2 decimals"
+    )
+    .min(1, "Salary is required")
+    .max(10),
 });
 
 export async function GET(req: Request) {
@@ -39,12 +63,12 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json(); 
-       
-    const { cedula, name, patron, business_name, tel1, tel2, salary } =
-      employeeSchema.parse(body);
+    const body = await req.json();
+    console.log("ESTO ES LO QUE ESTÁ LLEGANDO DEL FORM", body);
 
-    //PROBLEMAS CON EL DATATYPE DE CÉDULA
+    const { cedula, name, patron, business_name, tel1, tel2, salary } =
+      EmployeeSchema.parse(body);
+
     const newEmployee = await db.employee.create({
       data: {
         cedula: cedula,
@@ -67,42 +91,3 @@ export async function POST(req: Request) {
     );
   }
 }
-// const {
-//     cedula,
-//     name,
-//     patron,
-//     business_name,
-//     tel1,
-//     tel2,
-//     salary,
-//   } = employeeSchema.parse();
-//     const body = await req.json();
-// const { cedula, name, patron, business_name, tel1, tel2, salary } = employeeSchema.parse(body);
-//     const ExistingName = await db.employee.findUnique({
-//     where: { name: name },
-//   });
-
-//   if (ExistingName) {
-//     return NextResponse.json(
-//       { employee: null, message: "This name already exist" },
-//       { status: 409 }
-//     );
-//   }
-
-//   const newEmployee = await db.employee.create({
-//     data: {
-
-//       patron,
-
-//       business_name,
-//     tel1,
-//      tel2,
-//      salary,
-
-//     },
-//   });
-//   return NextResponse.json({ newEmployee, message: "Used created successfully"}, { status: 201});
-
-// catch (error) {
-//     return NextResponse.json({ message: "Something went wrong", error}, { status: 500});
-// }

@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import { NextResponse } from "next/server";
 
 interface Params {
-  params: { cedula: string };
+  params: { cedula: number };
 }
 
 export async function DELETE(req: Request, { params }: Params) {
