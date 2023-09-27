@@ -41,18 +41,16 @@ const SignUpForm = () => {
       confirmPassword: "",
     },
   });
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
+
   const router = useRouter();
 
   const createUser = async (values: z.infer<typeof SignUpSchema>) => {
     console.log("ESTO ES LO QUE LLEGA DEL FORM:", values);
-    // const { email, password } = SignUpSchema.parse(values);
+
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       alert("User successfully created");
-      router.push("/sign-in");  
+      router.push("/sign-in");
     } catch (error) {
       alert(error);
     }
@@ -80,7 +78,6 @@ const SignUpForm = () => {
                 id="email"
                 type="text"
                 {...register("email")}
-                // onChange={(e) => setEmail(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -103,7 +100,6 @@ const SignUpForm = () => {
                 type="password"
                 autoComplete="current-password"
                 {...register("password")}
-                // onChange={(e) => setPassword(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -125,7 +121,6 @@ const SignUpForm = () => {
                 id="confirmPassword"
                 type="password"
                 {...register("confirmPassword")}
-                // onChange={(e) => setPasswordConfirm(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -137,13 +132,6 @@ const SignUpForm = () => {
 
           <div>
             <button
-              // disabled={
-              //   !email ||
-              //   !password ||
-              //   !passwordConfirm ||
-              //   password !== passwordConfirm
-              // }
-              // onClick={() => createUser()}
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
