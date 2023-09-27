@@ -1,21 +1,61 @@
 "use client";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { useState } from "react";
-import { auth } from "../../app/firebase"
+import { auth } from "../../app/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 
+//form schema
+
+const SignUpSchema = z
+  .object({
+    email: z.string().email("Invalid email").min(1, "Email is required"),
+    password: z
+      .string()
+      .regex(
+        new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
+        "Password must have between 8 and 16 characters, 1 digit, at least one lowercase, at least one uppercase"
+      )
+      .min(8, "Password is too short")
+      .max(16, "Password is too long"),
+    confirmPassword: z.string().min(1, "Password confirm is required"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    path: ["confirmPassword"],
+    message: "Password do not match",
+  });
+
 // Handler del form
 const SignUpForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof SignUpSchema>>({
+    resolver: zodResolver(SignUpSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [passwordConfirm, setPasswordConfirm] = useState("");
   const router = useRouter();
 
-  const createUser = async () => {
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    alert("User successfully created")
-    router.push("/sign-in")
-
+  const createUser = async (values: z.infer<typeof SignUpSchema>) => {
+    console.log("ESTO ES LO QUE LLEGA DEL FORM:", values);
+    // const { email, password } = SignUpSchema.parse(values);
+    try {
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
+      alert("User successfully created");
+      router.push("/sign-in");  
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -27,7 +67,7 @@ const SignUpForm = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form className="space-y-6" onSubmit={handleSubmit(createUser)}>
           <div>
             <label
               htmlFor="email"
@@ -38,13 +78,13 @@ const SignUpForm = () => {
             <div className="mt-2">
               <input
                 id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                {...register("email")}
+                // onChange={(e) => setEmail(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors?.email?.message && <p>{errors.email.message}</p>}
             </div>
           </div>
 
@@ -60,13 +100,14 @@ const SignUpForm = () => {
             <div className="mt-2">
               <input
                 id="password"
-                name="password"
                 type="password"
                 autoComplete="current-password"
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
+                // onChange={(e) => setPassword(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors?.password?.message && <p>{errors.password.message}</p>}
             </div>
           </div>
 
@@ -81,26 +122,29 @@ const SignUpForm = () => {
             </div>
             <div className="mt-2">
               <input
-                id="confirm password"
-                name="confirm password"
+                id="confirmPassword"
                 type="password"
-                autoComplete="current-password"
-                onChange={(e) => setPasswordConfirm(e.target.value)}
+                {...register("confirmPassword")}
+                // onChange={(e) => setPasswordConfirm(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors?.confirmPassword?.message && (
+                <p>{errors.confirmPassword.message}</p>
+              )}
             </div>
           </div>
 
           <div>
             <button
-              disabled={
-                !email ||
-                !password ||
-                !passwordConfirm ||
-                password !== passwordConfirm
-              }
-              onClick={() => createUser()}
+              // disabled={
+              //   !email ||
+              //   !password ||
+              //   !passwordConfirm ||
+              //   password !== passwordConfirm
+              // }
+              // onClick={() => createUser()}
+              type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Sign up
