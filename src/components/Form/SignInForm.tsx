@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
-
+import { useToast } from "@/components/ui/use-toast";
 
 const SigninSchema = z.object({
   email: z.string().email("Invalid email").min(1, "Email is required"),
@@ -18,6 +18,8 @@ const SigninSchema = z.object({
 });
 
 const SignInForm = () => {
+  const { toast } = useToast();
+
   const {
     register,
     handleSubmit,
@@ -31,15 +33,15 @@ const SignInForm = () => {
   });
 
   const onSubmit = async (values: z.infer<typeof SigninSchema>) => {
-    const signInData = await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: true,
-      callbackUrl: "/",
-    });
-    
-    if(signInData?.error){
-      console.log("ESTE ES EL ERROR QUE ESTÁ LLEGANDO DE NEXT AUTH:", signInData.error)
+    try {
+      await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      alert("Invalid credentials");
     }
   };
 
@@ -68,7 +70,9 @@ const SignInForm = () => {
                 required
                 className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.email?.message && <p className="text-xs text-gray-800">{errors.email.message}</p>}
+              {errors?.email?.message && (
+                <p className="text-xs text-gray-800">{errors.email.message}</p>
+              )}
             </div>
           </div>
 
@@ -89,7 +93,11 @@ const SignInForm = () => {
                 required
                 className=" p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.password?.message && <p className="text-xs text-gray-800">{errors.password.message}</p>}
+              {errors?.password?.message && (
+                <p className="text-xs text-gray-800">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
           </div>
 

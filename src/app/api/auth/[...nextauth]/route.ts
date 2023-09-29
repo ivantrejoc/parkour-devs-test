@@ -21,27 +21,10 @@ const handler = NextAuth({
             (credentials as any).email || "",
             (credentials as any).password || ""
           );
-        } catch (error) {
-          
+        } catch (error:any) {
+          console.log(error);
         }
       },
-
-      // : Promise<any> {
-
-      //   return await signInWithEmailAndPassword(
-      //     auth,
-      //     (credentials as any).email || "",
-      //     (credentials as any).password || ""
-      //   )
-      //     .then((userCredential) => {
-      //       console.log("ESTO ES LO QUE LLEGA COMO userCredential:",userCredential);
-      //       if (userCredential.user) {
-      //         return userCredential.user;
-      //       }
-      //       return null;
-      //     })
-      //     .catch((error) => console.log(error));
-      // },
     }),
   ],
 });

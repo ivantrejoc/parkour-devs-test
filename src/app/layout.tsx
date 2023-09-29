@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/Navbar";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import SessionProvider from "./SessionProvider";
@@ -21,6 +20,7 @@ export default function RootLayout({
         <main className="h-screen flex flex-col justify-center items-center">
           <SessionProvider>{children}</SessionProvider>
         </main>
+        
       </body>
     </html>
   );

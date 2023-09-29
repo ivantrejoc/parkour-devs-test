@@ -1,5 +1,5 @@
 import SignInForm from "@/components/Form/SignInForm";
-
+import { Toaster } from "@/components/ui/toaster";
 
 
 const Page = () => {
@@ -7,6 +7,7 @@ const Page = () => {
 
     <div className="w-full">
     <SignInForm/>
+    <Toaster />
     
     </div>
   )
