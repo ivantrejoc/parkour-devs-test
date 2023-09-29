@@ -11,7 +11,7 @@ export default function Home() {
       redirect("/sign-in");
     },
   });
-
+  
   return (
     <div>
       <Navbar />

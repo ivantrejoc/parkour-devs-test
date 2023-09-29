@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-red-400 w-full max-h-full flex flex-col flex-wrap">
+      <body className="bg-slate-400 w-full max-h-full flex flex-col flex-wrap">
         <main className="h-screen flex flex-col justify-center items-center">
           <SessionProvider>{children}</SessionProvider>
         </main>

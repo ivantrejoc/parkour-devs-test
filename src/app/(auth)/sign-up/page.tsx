@@ -3,7 +3,7 @@ import SignUpForm from "@/components/Form/SignUpForm";
 const Page = () => {
     return (
   
-      <div className="w-full">
+      <div>
        <SignUpForm/>
         
         </div>

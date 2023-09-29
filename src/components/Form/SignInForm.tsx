@@ -10,7 +10,7 @@ const SigninSchema = z.object({
     .string()
     .regex(
       new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
-      "Password must have one digit, at least one lowercase, at least one uppercase"
+      "Invalid Password"
     )
     .min(8, "Password is too short")
     .max(16, "Password is too long"),
@@ -62,9 +62,9 @@ const SignInForm = () => {
                 type="text"
                 {...register("email")}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.email?.message && <p>{errors.email.message}</p>}
+              {errors?.email?.message && <p className="text-xs text-gray-800">{errors.email.message}</p>}
             </div>
           </div>
 
@@ -83,9 +83,9 @@ const SignInForm = () => {
                 type="password"
                 {...register("password")}
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className=" p-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
-              {errors?.password?.message && <p>{errors.password.message}</p>}
+              {errors?.password?.message && <p className="text-xs text-gray-800">{errors.password.message}</p>}
             </div>
           </div>
 
