@@ -22,7 +22,7 @@ const handler = NextAuth({
             (credentials as any).password || ""
           );
         } catch (error) {
-          console.log(error);
+          
         }
       },
 

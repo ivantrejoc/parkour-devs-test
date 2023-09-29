@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { signIn } from "next-auth/react";
 
+
 const SigninSchema = z.object({
   email: z.string().email("Invalid email").min(1, "Email is required"),
   password: z
@@ -36,7 +37,10 @@ const SignInForm = () => {
       redirect: true,
       callbackUrl: "/",
     });
-    console.log("ESTO ES LO QUE LLEGA DEL HANDLER", signInData);
+    
+    if(signInData?.error){
+      console.log("ESTE ES EL ERROR QUE ESTÁ LLEGANDO DE NEXT AUTH:", signInData.error)
+    }
   };
 
   return (
