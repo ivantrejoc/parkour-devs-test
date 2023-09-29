@@ -76,7 +76,7 @@ const DataForm = () => {
 
   return (
     <Form {...form}>
-      <div className="p-6 border-gray-300 rounded-xl bg-gray-50  flex flex-col justify-center items-center w-full">
+      <div className="p-6 border-gray-300 rounded-xl bg-gray-200  flex flex-col justify-center items-center w-full">
         <h2 className="text-gray-900 text-xl p-2">Create new Employee</h2>
         <form
           className="w-full max-w-screen-xl justify-center mx-24 mr-auto mt-2 grid grid-cols-2 grid-rows-4 gap-y-2.5"
