@@ -63,9 +63,9 @@ export function DataEmployees<TData, TValue>({
   };
 
   return (
-    <div className="justify-center items-center w-full h-[20%] mx-auto">
+    <div className= "justify-center items-center max-h-full h-full">
       
-      <div className="flex flex-col items-start py-2 mt-40">
+      <div className="flex flex-col items-start">
       <h2 className="text-gray-900 text-lg my-2 ">Employees Data</h2>
         <Input
           placeholder="Search employee name..."
@@ -73,18 +73,18 @@ export function DataEmployees<TData, TValue>({
           onChange={(event) =>
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
-          className="block w-[30%] pl-10 text-sm text-gray-900 border border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-[30%] pl-10 text-sm text-gray-900 border-gray-300 rounded-xl bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
 
       <div className="mt-2 w-full" >
-        <Table className="rounded-xl border w-full border-gray-300 bg-gray-50 py-20">
-          <TableHeader className="text-md font-bold text-gray-700   bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+        <Table className="rounded-xl  w-full border-gray-300 bg-gray-50 py-20">
+          <TableHeader className="text-md font-bold text-gray-700   bg-gray-100 dark:bg-gray-700 dark:text-gray-400 rounded-xl">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead  key={header.id}>
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -97,7 +97,7 @@ export function DataEmployees<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody className="px-6 py-4 font-small text-gray-900 whitespace-nowrap dark:text-white rounded-xl border border-gray-300">
+          <TableBody className="px-6 py-4 font-small text-gray-900 whitespace-nowrap dark:text-white rounded-xl">
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
@@ -127,7 +127,7 @@ export function DataEmployees<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
+      <div className="flex items-center justify-end space-x-2 py-4 px-4">
         <Button
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           variant="outline"

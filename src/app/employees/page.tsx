@@ -50,9 +50,8 @@ export default function DemoPage() {
     fetchData();
   }, []);
 
-  // const dataTable = await getData(); // hace petición de datos a la BDD
-  return (
-    <div className="w-full mx-auto py-10">
+    return (
+    <div className="h-[70%] w-full mx-auto my-auto">
       <DataEmployees columns={columns} data={dataTable} />
     </div>
   );

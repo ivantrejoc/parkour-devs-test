@@ -11,8 +11,7 @@ const Page = () => {
     },
   });
   return (
-    <div className="flex flex-col
-    w-full mx-auto max-w-screen-xl justify-center mt-24">   
+    <div className="flex flex-col w-full mx-12 mt-16 max-w-screen-xl justify-center">   
       
       <DataForm/>
     </div>

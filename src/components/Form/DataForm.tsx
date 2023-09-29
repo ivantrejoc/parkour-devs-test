@@ -76,10 +76,10 @@ const DataForm = () => {
 
   return (
     <Form {...form}>
-      <div className="p-0">
-        <h2 className="text-gray-900 text-lg  mb-2">Create new Employee</h2>
+      <div className="p-6 border-gray-300 rounded-xl bg-gray-50  flex flex-col justify-center items-center w-full">
+        <h2 className="text-gray-900 text-xl p-2">Create new Employee</h2>
         <form
-          className="w-full max-w-screen-xl h-auto mx-auto mt-0 grid grid-cols-2 grid-rows-4 gap-4 p-0"
+          className="w-full max-w-screen-xl justify-center mx-24 mr-auto mt-2 grid grid-cols-2 grid-rows-4 gap-y-2.5"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
@@ -92,7 +92,7 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
                     placeholder="1234125..."
                     {...field}
@@ -112,7 +112,7 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
                     placeholder="Jhon Doe"
                     {...field}
@@ -133,7 +133,7 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
                     placeholder="Super 99"
                     {...field}
@@ -153,7 +153,7 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
                     placeholder="XLS Supermarket TLC"
                     {...field}
@@ -173,9 +173,9 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
-                    placeholder="+50760892456"
+                    placeholder="50760892456"
                     {...field}
                   />
                 </FormControl>
@@ -193,9 +193,9 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     type="text"
-                    placeholder="+50760892456"
+                    placeholder="50760892456"
                     {...field}
                   />
                 </FormControl>
@@ -213,7 +213,7 @@ const DataForm = () => {
                 </FormLabel>
                 <FormControl>
                   <Input
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-[60%] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     {...field}
                   />
                 </FormControl>
@@ -223,7 +223,7 @@ const DataForm = () => {
           />
 
           <Button
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 py- text-center mt-8 mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            className=" p-x-10 w-[40%] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-xl text-sm px-4 text-center mt-7 ml-16 mr-auto md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="submit"
           >
             Create Register

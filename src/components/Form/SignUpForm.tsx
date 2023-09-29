@@ -2,7 +2,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useState } from "react";
 import { auth } from "../../app/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
@@ -16,7 +15,7 @@ const SignUpSchema = z
       .string()
       .regex(
         new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
-        "Password must have between 8 and 16 characters, 1 digit, at least one lowercase, at least one uppercase"
+        "Password must have one digit, at least one lowercase, at least one uppercase"
       )
       .min(8, "Password is too short")
       .max(16, "Password is too long"),
@@ -45,8 +44,7 @@ const SignUpForm = () => {
   const router = useRouter();
 
   const createUser = async (values: z.infer<typeof SignUpSchema>) => {
-    console.log("ESTO ES LO QUE LLEGA DEL FORM:", values);
-
+    
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
       alert("User successfully created");
