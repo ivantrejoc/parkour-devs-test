@@ -12,7 +12,7 @@ Create and connect Database:
 2. Type the command: CREATE DATABASE dataBaseName;
 3. Type the command: \c dataBaseName;
 4. Inside the project create a .env file.
-5. Declare the enviroment variable: DATABASE_URL = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE".
+5. Declare the enviroment variable: DATABASE_URL = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public".
 
 When:
 USER = postgres user.
@@ -23,8 +23,9 @@ DATABASE = postgres database name.
 
 ![postgresurl](<postgres url.png>)
 
-6. in console type command npm run dev
-7. The database will be connected with the app.
+6.in console type command npx prisma migrate dev --name init
+7. in console type command npm run dev
+8. The database will be connected with the app.
 
 Using the app:
 Sign up:
