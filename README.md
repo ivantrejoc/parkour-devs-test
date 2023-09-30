@@ -20,6 +20,7 @@ PASSWORD = postgres password.
 HOST = postgres host.
 PORT = postgres port.
 DATABASE = postgres database name.
+
 ![postgresurl](<postgres url.png>)
 
 6. in console type command npm run dev
