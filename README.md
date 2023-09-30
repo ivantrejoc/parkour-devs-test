@@ -11,7 +11,7 @@ Create and connect Database:
 1. Open sqlShell.
 2. Type the command: CREATE DATABASE dataBaseName;
 3. Type the command: \c dataBaseName;
-4. Inside the project look for .env file
+4. Inside the project create a .env file.
 5. Declare the enviroment variable: DATABASE_URL = "postgresql://USER:PASSWORD@HOST:PORT/DATABASE".
 
 When:
@@ -21,7 +21,9 @@ HOST = postgres host.
 PORT = postgres port.
 DATABASE = postgres database name.
 ![postgresurl](<postgres url.png>)
-6. The database will be connected with the app.
+
+6. in console type command npm run dev
+7. The database will be connected with the app.
 
 Using the app:
 Sign up:
@@ -74,6 +76,9 @@ Firebase.
 
 TailwindCSS.
 
-Shadcn/ui
+Flowbyte.
+
+Shadcn/ui.
+
 
    
